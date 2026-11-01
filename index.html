@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Media, AI, and Public Life is a Vertically Integrated Projects team at the University of Arizona studying the impact of social media and AI on individuals and society.">
+<title>Media, AI, and Public Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --ink: #14161B;
+  --muted: #5E636D;
+  --rule: #E6E8EC;
+  --link: #3044C9;
+  --accent: #3044C9;
+  --tint: #F1F4FA;
+  --panel: #E9EEFA;
+  --card: #FFFFFF;
+  --skel: #DDE2EC;
+  --node: #AEB6C6;
+  --edge: #D3D9E4;
+  --font: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0F1115; --ink: #ECEDEF; --muted: #9EA3AC; --rule: #262A31; --link: #9AA6FF; --accent: #8E9BFF; --tint: #1A1D26; --panel: #161B28; --card: #1D2230; --skel: #2C3242; --node: #5A6272; --edge: #2A303C; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0F1115; --ink: #ECEDEF; --muted: #9EA3AC; --rule: #262A31; --link: #9AA6FF; --accent: #8E9BFF; --tint: #1A1D26; --panel: #161B28; --card: #1D2230; --skel: #2C3242; --node: #5A6272; --edge: #2A303C; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { background: var(--bg); margin: 0; color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.55; }
+a { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+h1, h2, h3, p, ul { margin: 0; }
+h1, h2 { text-wrap: balance; }
+.page { max-width: 1040px; margin: 0 auto; padding-inline: 24px; padding-bottom: 64px; }
+
+header.top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px 24px; flex-wrap: wrap; padding-block: 22px; border-bottom: 1px solid var(--ink); }
+.wordmark { font-weight: 700; font-size: 1rem; color: var(--ink); text-decoration: none; }
+.wordmark span { font-weight: 400; color: var(--muted); }
+header.top nav { display: flex; gap: 22px; flex-wrap: wrap; font-size: 0.95rem; }
+header.top nav a { color: var(--ink); text-decoration: none; }
+header.top nav a:hover { text-decoration: underline; }
+
+.intro { padding-block: 64px 56px; display: grid; gap: 22px; }
+.intro h1 { font-size: clamp(2rem, 4.2vw + 0.8rem, 3.4rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; max-width: 20ch; }
+.hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; gap: 40px; }
+.hero-text { display: grid; gap: 22px; min-width: 0; }
+.network { width: 100%; max-width: 100%; aspect-ratio: 1; display: block; }
+@media (max-width: 760px) { .hero { grid-template-columns: minmax(0, 1fr); } .network { aspect-ratio: 2 / 1; } }
+.intro p { font-size: 1.15rem; color: var(--muted); max-width: 58ch; }
+
+.row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px 48px; padding-block: 44px; border-top: 1px solid var(--rule); }
+.row > h2 { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; align-self: start; }
+.row > h2::before { content: ""; width: 8px; height: 8px; background: var(--accent); flex: none; }
+.view > .row:first-child { border-top: 0; padding-top: 56px; }
+.row-body { display: grid; gap: 22px; min-width: 0; }
+.row-body > p { max-width: 64ch; }
+@media (max-width: 720px) { .row { grid-template-columns: minmax(0, 1fr); padding-block: 36px; } }
+
+.areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; }
+.area { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; align-items: start; }
+.thumb { width: 88px; height: 88px; display: block; }
+.areas h3 { font-size: 1.05rem; font-weight: 500; margin-bottom: 6px; }
+.areas p { color: var(--muted); font-size: 0.97rem; }
+@media (max-width: 600px) { .areas { grid-template-columns: 1fr; } }
+
+.plain-list { list-style: none; padding: 0; columns: 2; column-gap: 40px; }
+.plain-list li { padding-block: 6px; border-bottom: 1px solid var(--rule); break-inside: avoid; }
+@media (max-width: 600px) { .plain-list { columns: 1; } }
+.aside { color: var(--muted); font-size: 0.95rem; }
+
+.lead { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 28px; align-items: start; }
+.lead img { width: 180px; aspect-ratio: 4 / 5; height: auto; max-width: 100%; object-fit: cover; display: block; }
+.lead h3 { font-size: 1.25rem; font-weight: 700; }
+.member h3 { font-size: 1rem; font-weight: 700; }
+.role { color: var(--muted); font-size: 0.92rem; margin-bottom: 8px; }
+.lead p.bio { max-width: 60ch; }
+.lead a { font-size: 0.9rem; }
+.links { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 12px; }
+@media (max-width: 520px) { .lead { grid-template-columns: 1fr; } .lead img { width: 160px; } }
+.subhead { font-size: 0.9rem; font-weight: 500; color: var(--muted); padding-top: 14px; border-top: 1px solid var(--rule); }
+.members { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; }
+@media (max-width: 860px) { .members { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.member { display: grid; gap: 10px; align-content: start; }
+.member img, .member .no-photo { width: 100%; aspect-ratio: 4 / 5; height: auto; max-width: 100%; object-fit: cover; display: block; }
+.member .no-photo { background: var(--tint); display: grid; place-items: center; color: var(--muted); font-size: 1.8rem; font-weight: 500; }
+.member .role { margin-bottom: 0; font-size: 0.88rem; }
+.member p.bio { font-size: 0.9rem; }
+.placeholder { color: var(--muted); font-style: italic; }
+
+.apply-link { display: inline-block; padding: 11px 20px; border: 1px solid var(--accent); background: var(--accent); color: var(--bg); text-decoration: none; font-weight: 500; }
+.apply-link:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+header.top nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.join-facts { list-style: disc; padding-left: 20px; display: grid; gap: 6px; }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <a class="wordmark" href="#home">MAPL <span>Media, AI, and Public Life</span></a>
+    <nav aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <a href="#people">People</a>
+      <a href="#join">Apply</a>
+    </nav>
+  </header>
+
+  <main id="home-view" class="view">
+    <div class="intro hero">
+      <div class="hero-text">
+      <h1>Understanding the impact of social media and AI on individuals and society.</h1>
+      <p>From what people know and believe to how they form opinions and take part in civic life. Media, AI, and Public Life (MAPL) is a Vertically Integrated Project team in the School of Journalism at the University of Arizona, where students from different majors work alongside faculty on scientific research projects.</p>
+      </div>
+      <canvas id="network" class="network" aria-hidden="true"></canvas>
+    </div>
+
+  </main>
+
+  <main id="research-view" class="view" hidden>
+    <section class="row">
+      <h2>Research</h2>
+      <div class="row-body">
+        <p>We study how people find information, decide what to trust, form opinions, and take part in public life as more of that happens through feeds, recommendation algorithms, and AI tools. Current work falls into four areas.</p>
+        <div class="areas">
+          <div class="area">
+            <svg class="thumb" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="10" style="fill:var(--panel)"/><line x1="48" y1="48" x2="15" y2="20" style="fill:none;stroke:color-mix(in srgb, var(--accent) 55%, var(--panel));stroke-width:1.5;"/><line x1="48" y1="48" x2="81" y2="20" style="fill:none;stroke:color-mix(in srgb, var(--accent) 55%, var(--panel));stroke-width:1.5;"/><line x1="48" y1="48" x2="15" y2="76" style="fill:none;stroke:color-mix(in srgb, var(--accent) 55%, var(--panel));stroke-width:1.5;"/><line x1="48" y1="48" x2="81" y2="76" style="fill:none;stroke:color-mix(in srgb, var(--accent) 55%, var(--panel));stroke-width:1.5;"/><circle cx="15" cy="20" r="7" style="fill:var(--card);stroke:var(--accent);stroke-width:2;"/><circle cx="81" cy="20" r="7" style="fill:var(--card);stroke:var(--accent);stroke-width:2;"/><circle cx="15" cy="76" r="7" style="fill:var(--card);stroke:var(--accent);stroke-width:2;"/><circle cx="81" cy="76" r="7" style="fill:var(--card);stroke:var(--accent);stroke-width:2;"/><rect x="33" y="19" width="30" height="58" rx="6" style="fill:var(--accent);"/><path d="M43 38l14 10-14 10z" style="fill:var(--card);"/></svg>
+            <div>
+            <h3>Reaching and engaging audiences</h3>
+            <p>How content creators, influencers, and news organizations reach and engage audiences in today's media environment.</p>
+            </div>
+          </div>
+          <div class="area">
+            <svg class="thumb" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="10" style="fill:var(--panel)"/><path d="M14 18h44a6 6 0 0 1 6 6v22a6 6 0 0 1-6 6H32l-11 10V52h-7a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6z" style="fill:var(--accent);"/><path d="M50 42h30a5 5 0 0 1 5 5v18a5 5 0 0 1-5 5h-4v10l-10-10H50a5 5 0 0 1-5-5V47a5 5 0 0 1 5-5z" style="fill:var(--card);stroke:var(--accent);stroke-width:2;"/><rect x="17" y="27" width="34" height="4" rx="2" style="fill:var(--card);"/><rect x="17" y="37" width="24" height="4" rx="2" style="fill:var(--card);"/><circle cx="55" cy="56" r="3" style="fill:var(--accent);"/><circle cx="65" cy="56" r="3" style="fill:var(--accent);"/><circle cx="75" cy="56" r="3" style="fill:var(--accent);"/></svg>
+            <div>
+            <h3>Public opinion online</h3>
+            <p>How opinions form and spread in online discussion spaces, and how to tell organic conversation from coordinated activity.</p>
+            </div>
+          </div>
+          <div class="area">
+            <svg class="thumb" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="10" style="fill:var(--panel)"/><rect x="16" y="14" width="50" height="68" rx="5" style="fill:var(--card);stroke:color-mix(in srgb, var(--accent) 55%, var(--panel));stroke-width:1.5;"/><rect x="23" y="22" width="36" height="16" rx="2" style="fill:color-mix(in srgb, var(--accent) 55%, var(--panel));"/><rect x="23" y="44" width="36" height="4" rx="2" style="fill:var(--skel);"/><rect x="23" y="53" width="36" height="4" rx="2" style="fill:var(--skel);"/><rect x="23" y="62" width="22" height="4" rx="2" style="fill:var(--skel);"/><circle cx="66" cy="64" r="18" style="fill:var(--accent);"/><path transform="translate(66 64)" d="M0-11C1.6-3 3-1.6 11 0 3 1.6 1.6 3 0 11-1.6 3-3 1.6-11 0-3-1.6-1.6-3 0-11z" style="fill:var(--card);"/></svg>
+            <div>
+            <h3>AI in everyday news use</h3>
+            <p>How people, and young adults in particular, use generative AI to find, understand, and check news and public-affairs information.</p>
+            </div>
+          </div>
+          <div class="area">
+            <svg class="thumb" viewBox="0 0 96 96" aria-hidden="true"><rect width="96" height="96" rx="10" style="fill:var(--panel)"/><rect x="12" y="20" width="62" height="42" rx="4" style="fill:color-mix(in srgb, var(--accent) 55%, var(--panel));"/><rect x="17" y="25" width="52" height="32" rx="1" style="fill:var(--card);"/><rect x="6" y="62" width="74" height="6" rx="3" style="fill:var(--accent);"/><rect x="22" y="31" width="30" height="4" rx="2" style="fill:var(--skel);"/><rect x="22" y="40" width="24" height="4" rx="2" style="fill:var(--skel);"/><rect x="22" y="49" width="18" height="4" rx="2" style="fill:var(--skel);"/><rect x="60" y="36" width="26" height="46" rx="5" style="fill:var(--accent);"/><rect x="64" y="43" width="18" height="12" rx="2" style="fill:var(--card);"/><rect x="64" y="59" width="18" height="3" rx="1.5" style="fill:var(--card);"/><rect x="64" y="66" width="12" height="3" rx="1.5" style="fill:var(--card);"/></svg>
+            <div>
+            <h3>Digital media and information habits</h3>
+            <p>How people interact with digital media technologies, and how their patterns of information consumption are changing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h2>Methods</h2>
+      <div class="row-body">
+        <p>Students learn research methods by working on real projects. No advanced technical skills are needed to start.</p>
+        <ul class="plain-list">
+          <li>Survey design and statistical analysis</li>
+          <li>Online experiments</li>
+          <li>Interviews and qualitative analysis</li>
+          <li>Content analysis of news and social media</li>
+          <li>Social media data collection</li>
+          <li>Computational methods</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <main id="people-view" class="view" hidden>
+    <section class="row">
+      <h2>People</h2>
+      <div class="row-body">
+        <div class="lead">
+          <img src="images/zicheng.jpg" alt="Zicheng Cheng" width="480" height="600">
+          <div>
+            <h3>Zicheng Cheng</h3>
+            <p class="role">Team Lead</p>
+            <p class="bio">Zicheng Cheng (Ph.D., Mass Communications) is an assistant professor in the School of Journalism at the University of Arizona. Her research examines media effects and digital journalism, with a focus on how people get information online and what that means for civic life.</p>
+            <div class="links">
+              <a href="https://journalism.arizona.edu/person/zicheng-cheng" target="_blank" rel="noopener">Faculty profile</a>
+              <a href="https://scholar.google.com/citations?user=mtfhEIMAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="subhead">Student researchers</p>
+        <div class="members">
+          <div class="member">
+            <img src="images/nujood.jpg" alt="Nujood Alahmari" width="480" height="600" loading="lazy">
+            <div>
+              <h3>Nujood Alahmari</h3>
+              <p class="role">M.A. student, Digital Journalism</p>
+            </div>
+            <p class="bio">Interested in how social media affects the way people communicate and interact with each other.</p>
+          </div>
+          <div class="member">
+            <img src="images/andrea.jpg" alt="Andrea Fernández" width="480" height="600" loading="lazy">
+            <div>
+              <h3>Andrea Fernández Pietr</h3>
+              <p class="role">Neuroscience and Cognitive Science</p>
+            </div>
+            <p class="bio">Holds a bachelor's degree in business administration and brings experience in data analysis and research. Interested in where neuroscience, cognition, neurodiversity, and technology meet.</p>
+          </div>
+          <div class="member">
+            <img src="images/nataly.jpg" alt="Nataly Patton" width="480" height="600" loading="lazy">
+            <div>
+              <h3>Nataly Patton</h3>
+              <p class="role">Senior, Political Science, Pre-Law minor</p>
+            </div>
+            <p class="bio">From Illinois, with a passion for culture, creativity, and community.</p>
+          </div>
+          <div class="member">
+            <img src="images/carlos.jpg" alt="Carlos Guerra Gómez" width="480" height="600" loading="lazy">
+            <div>
+              <h3>Carlos Guerra Gómez</h3>
+              <p class="role">Sophomore, Economics and PPEL</p>
+            </div>
+            <p class="bio">Brings experience in data analysis and qualitative and quantitative research. Interested in economics, public policy, and evidence-based solutions to societal challenges.</p>
+          </div>
+        </div>
+
+        <p class="subhead">External member</p>
+        <div class="members">
+          <div class="member">
+            <img src="images/yanlin.jpg" alt="Yanlin Li" width="480" height="600" loading="lazy">
+            <div>
+              <h3>Yanlin Li</h3>
+              <p class="role">External Collaborator, Co-Lead</p>
+            </div>
+            <p class="bio">Yanlin Li (Ph.D., Electrical Engineering) is an assistant research engineer at Miami University. His research covers digital signal processing, computational social science, and machine learning methods.</p>
+            <p class="bio"><a href="https://scholar.google.com/citations?user=lGSv_tUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <main id="join-view" class="view" hidden>
+    <div class="intro">
+      <h1>Apply to join</h1>
+      <p>Students from all majors may apply. The team is especially relevant to communication and journalism students, and we also welcome applicants from public relations, marketing, political science, data science, and computer or information science.</p>
+    </div>
+    <section class="row">
+      <h2>What we look for</h2>
+      <div class="row-body">
+        <ul class="join-facts">
+          <li>Curiosity about how people use and respond to social media, AI, and news</li>
+          <li>Willingness to learn research methods. Prior research experience is helpful but not required.</li>
+          <li>Attention to detail, clear communication, and reliability with deadlines</li>
+        </ul>
+      </div>
+    </section>
+    <section class="row">
+      <h2>Participation</h2>
+      <div class="row-body">
+        <ul class="join-facts">
+          <li>Students may join for course credit or as volunteers.</li>
+          <li>New members are accepted at the start of each semester.</li>
+          <li>Fully online students are welcome to apply.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="row">
+      <h2>How to apply</h2>
+      <div class="row-body">
+        <p>Submit your application through the VIP Interest Form and select "Media, AI, and Public Life (MAPL)" as your team.</p>
+        <p><a class="apply-link" href="https://uarizona.co1.qualtrics.com/jfe/form/SV_bOQjCo9tqcUmHOe" target="_blank" rel="noopener">Open the VIP Interest Form</a></p>
+        <p>For any questions or inquiries, please reach out to the team lead, Dr. Zicheng Cheng, at zichengcheng[at]arizona.edu.</p>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+<script>
+(function () {
+  var names = ['home', 'research', 'people', 'join'];
+  var links = document.querySelectorAll('header.top nav a');
+  function route() {
+    var h = location.hash.slice(1);
+    if (names.indexOf(h) === -1) h = 'home';
+    names.forEach(function (n) { document.getElementById(n + '-view').hidden = n !== h; });
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + h) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+<script>
+(function () {
+  var c = document.getElementById('network');
+  if (!c) return;
+  function rand(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function draw() {
+    var w = c.clientWidth, h = c.clientHeight;
+    if (!w || !h) return;
+    var dpr = window.devicePixelRatio || 1;
+    c.width = w * dpr; c.height = h * dpr;
+    var ctx = c.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    var cs = getComputedStyle(document.documentElement);
+    var node = cs.getPropertyValue('--node').trim(), edge = cs.getPropertyValue('--edge').trim(),
+        ink = cs.getPropertyValue('--ink').trim(), accent = cs.getPropertyValue('--accent').trim();
+    var r = rand(42), pts = [], n = 160;
+    // People as dots, loosely clustered into communities.
+    var hubs = [[0.25, 0.28], [0.74, 0.24], [0.3, 0.74], [0.76, 0.72]];
+    for (var i = 0; i < n; i++) {
+      var hb = hubs[i % hubs.length], a = r() * Math.PI * 2, d = i < hubs.length ? 0 : Math.pow(r(), 0.9) * 0.18;
+      pts.push({ x: (hb[0] + Math.cos(a) * d) * w, y: (hb[1] + Math.sin(a) * d) * h });
+    }
+    // Connections between nearby people.
+    ctx.lineWidth = 1; ctx.strokeStyle = edge;
+    var lim = Math.min(w, h) * 0.07;
+    for (i = 0; i < n; i++) for (var j = i + 1; j < n; j++) {
+      var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+      if (dx * dx + dy * dy < lim * lim) { ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke(); }
+    }
+    // A few sources (creators, outlets, AI) reaching across communities.
+    var src = [pts[0], pts[1], pts[3]];
+    ctx.strokeStyle = accent; ctx.globalAlpha = 0.35;
+    src.forEach(function (s) {
+      for (var t = 0; t < 5; t++) { var q = pts[Math.floor(r() * n)]; ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+    });
+    ctx.globalAlpha = 1;
+    pts.forEach(function (p) { ctx.fillStyle = node; ctx.beginPath(); ctx.arc(p.x, p.y, 2.6, 0, Math.PI * 2); ctx.fill(); });
+    src.forEach(function (s) { ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(s.x, s.y, 5.5, 0, Math.PI * 2); ctx.fill(); });
+  }
+  draw();
+  window.addEventListener('resize', draw);
+  window.addEventListener('hashchange', function () { setTimeout(draw, 0); });
+  if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
+</body>
+</html>
