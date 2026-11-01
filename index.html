@@ -98,6 +98,8 @@ header.top nav a:hover { text-decoration: underline; }
 header.top nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .join-facts { list-style: disc; padding-left: 20px; display: grid; gap: 6px; }
 
+.news-item { display: grid; gap: 12px; }
+.news-item img { width: 100%; height: auto; display: block; }
 </style>
 </head>
 <body>
@@ -109,6 +111,7 @@ header.top nav a[aria-current="page"] { text-decoration: underline; text-decorat
       <a href="#research">Research</a>
       <a href="#people">People</a>
       <a href="#join">Apply</a>
+      <a href="#news">News</a>
     </nav>
   </header>
 
@@ -208,7 +211,7 @@ header.top nav a[aria-current="page"] { text-decoration: underline; text-decorat
           <div class="member">
             <img src="images/andrea.jpg" alt="Andrea Fernández" width="480" height="600" loading="lazy">
             <div>
-              <h3>Andrea Fernández Pietr</h3>
+              <h3>Andrea Fernández Pietri</h3>
               <p class="role">Neuroscience and Cognitive Science</p>
             </div>
             <p class="bio">Holds a bachelor's degree in business administration and brings experience in data analysis and research. Interested in where neuroscience, cognition, neurodiversity, and technology meet.</p>
@@ -246,6 +249,18 @@ header.top nav a[aria-current="page"] { text-decoration: underline; text-decorat
       </div>
     </section>
 
+  </main>
+
+  <main id="news-view" class="view" hidden>
+    <section class="row">
+      <h2>News</h2>
+      <div class="row-body">
+        <article class="news-item">
+          <p>MAPL team meeting on Zoom, Oct. 2026</p>
+          <img src="images/team-meeting.webp" alt="Zicheng Cheng and student researchers Nataly, Andrea, Nujood, and Carlos on a Zoom call" loading="lazy">
+        </article>
+      </div>
+    </section>
   </main>
 
   <main id="join-view" class="view" hidden>
@@ -287,7 +302,7 @@ header.top nav a[aria-current="page"] { text-decoration: underline; text-decorat
 
 <script>
 (function () {
-  var names = ['home', 'research', 'people', 'join'];
+  var names = ['home', 'research', 'people', 'news', 'join'];
   var links = document.querySelectorAll('header.top nav a');
   function route() {
     var h = location.hash.slice(1);
